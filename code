@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String template;
+
+        System.out.println("Bem-vindo ao gerador de sites automático!");
+        System.out.println("Vamos começar com algumas perguntas para personalizar seu site.");
+
+        System.out.println("Qual o nome da sua empresa?");
+        String companyName = scanner.nextLine();
+
+        System.out.println("Qual a descrição da sua empresa?");
+        String companyDescription = scanner.nextLine();
+
+        System.out.println("Qual o endereço da sua empresa?");
+        String companyAddress = scanner.nextLine();
+
+        System.out.println("Qual o telefone da sua empresa?");
+        String companyPhone = scanner.nextLine();
+
+        System.out.println("Qual o endereço de e-mail da sua empresa?");
+        String companyEmail = scanner.nextLine();
+
+        template = "<html>\n" +
+                   "  <head>\n" +
+                   "    <title>" + companyName + "</title>\n" +
+                   "  </head>\n" +
+                   "  <body>\n" +
+                   "    <h1>" + companyName + "</h1>\n" +
+                   "    <p>" + companyDescription + "</p>\n" +
+                   "    <p>Endereço: " + companyAddress + "</p>\n" +
+                   "    <p>Telefone: " + companyPhone + "</p>\n" +
+                   "    <p>E-mail: " + companyEmail + "</p>\n" +
+                   "  </body>\n" +
+                   "</html>";
+
+      
+        try {
+           File siteFile = new File("index.html");
+           FileWriter writer = new FileWriter(siteFile);
+           writer.write(template);
+           writer.close();
+           System.out.println("Site gerado com sucesso!");
+        } catch (IOException e) {
+           System.out.println("Ocorreu um erro ao gerar o site: " + e.getMessage());
+        }
+    }
+}
